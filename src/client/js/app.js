@@ -33,8 +33,7 @@ if ( /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent) ) {
 }
 
 function startGame(type) {
-  //  playerName = playerNameInput.value.replace(/(<([^>]+)>)/ig, '').substring(0,25);
-  	playerName = "Harel";
+    playerName = "Bot";
     playerType = type;
 
     screenWidth = window.innerWidth;
@@ -246,12 +245,12 @@ ChatClient.prototype.appendMessage = function (node) {
 // Sends a message or executes a command on the click of enter.
 ChatClient.prototype.sendChat = function (key) {
     var commands = this.commands,
-        input = document.getElementById('chatInput');
+        input = document.getElementById('F');
 
     key = key.which || key.keyCode;
 
     if (key === KEY_ENTER) {
-        var text = input.value.replace(/(<([^>]+)>)/ig,'');
+        var text = 'player at: ' + Math.round(player.x) + ',' + Math.round(player.y) + ' , going to: ' + Math.round(target.x) + ',' + Math.round(target.y);
         if (text !== '') {
 
             // Chat command.
@@ -304,7 +303,6 @@ function keyInput(event) {
         reenviar = false;
     }
     else if (key === KEY_SPLIT && reenviar) {
-       document.getElementById('split_cell').play();
         socket.emit('2');
         reenviar = false;
     }
@@ -638,11 +636,6 @@ function setupSocket(socket) {
         kicked = true;
         socket.close();
     });
-
-    socket.on('virusSplit', function (virusCell) {
-        socket.emit('2', virusCell);
-        reenviar = false;
-    });
 }
 
 function drawCircle(centerX, centerY, radius, sides) {
@@ -899,9 +892,9 @@ function gameLoop() {
 
             drawgrid();
             foods.forEach(drawFood);
-            fireFood.forEach(drawFireFood);
             viruses.forEach(drawVirus);
-            
+            fireFood.forEach(drawFireFood);
+
             if (borderDraw) {
                 drawborder();
             }
@@ -920,6 +913,7 @@ function gameLoop() {
             });
 
             drawPlayers(orderMass);
+            getBotNextMove();
             socket.emit('0', target); // playerSendTarget "Heartbeat".
 
         } else {
@@ -959,4 +953,21 @@ function resize() {
     player.screenWidth = c.width = screenWidth = playerType == 'player' ? window.innerWidth : gameWidth;
     player.screenHeight = c.height = screenHeight = playerType == 'player' ? window.innerHeight : gameHeight;
     socket.emit('windowResized', { screenWidth: screenWidth, screenHeight: screenHeight });
+}
+
+function getBotNextMove() {
+    /*var min = 0, dist = 10000000000;
+    for(var i=0; i<viruses.length; i++) {
+        var dx = viruses[i].x-player.x;
+        var dy = viruses[i].y-player.y;
+        var d = Math.sqrt(dx*dx + dy*dy);
+        if (d < dist) {
+            min = i;
+            dist = d;
+        }
+    }
+    console.log('player x is' + player.x + ' , going to' + target.x);*/
+
+    target.x = viruses[0].x;
+    target.y = viruses[0].y;
 }
