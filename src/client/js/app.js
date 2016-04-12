@@ -43,8 +43,13 @@ function startGame(type) {
     document.getElementById('startMenuWrapper').style.maxHeight = '0px';
     document.getElementById('gameAreaWrapper').style.opacity = 1;
     if (!socket) {
-        socket = io({query:"type=" + type});
-        setupSocket(socket);
+        if (type=='bot') {
+            socket = io({query:"type=" + 'player'});
+            setupSocket(socket);  
+        } else {
+            socket = io({query:"type=" + type});
+            setupSocket(socket);
+        }
     }
     if (!animLoopHandle)
         animloop();
