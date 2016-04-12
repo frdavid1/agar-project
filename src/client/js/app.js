@@ -63,7 +63,7 @@ window.onload = function() {
     var btn = document.getElementById('startBotButton'),
         btnS = document.getElementById('spectateButton'),
         nickErrorText = document.querySelector('#startMenu .input-error'),
-        humanBtn = document.getElementById('StartHumanButton');
+        humanBtn = document.getElementById('startHumanButton');
 
     btnS.onclick = function () {
         startGame('spectate');
