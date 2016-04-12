@@ -969,9 +969,9 @@ function resize() {
 
 function getBotNextMove() {
     var min = 0, dist = 10000000000;
-    for(var i=0; i<viruses.length; i++) {
-        var dx = viruses[i].x-player.x;
-        var dy = viruses[i].y-player.y;
+    for(var i=0; i<food.length; i++) {
+        var dx = food[i].x-player.x;
+        var dy = food[i].y-player.y;
         var d = Math.sqrt(dx*dx + dy*dy);
         if (d < dist) {
             min = i;
@@ -980,6 +980,6 @@ function getBotNextMove() {
     }
     console.log('player x is' + player.x + ' , going to' + target.x);
 
-    target.x = viruses[min].x - player.x;
-    target.y = viruses[min].y - player.y;
+    target.x = food[min].x - player.x;
+    target.y = food[min].y - player.y;
 }
