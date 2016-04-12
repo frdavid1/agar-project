@@ -61,12 +61,13 @@ window.onload = function() {
 
     var btn = document.getElementById('startBotButton'),
         btnS = document.getElementById('spectateButton'),
-        nickErrorText = document.querySelector('#startMenu .input-error');
+        nickErrorText = document.querySelector('#startMenu .input-error'),
+        humanBtn = document.getElementById('StartHumanButton');
 
     btnS.onclick = function () {
         startGame('spectate');
     };
-    btn.onclick = function () {
+    humanBtn.onclick = function () {
 
         // Checks if the nick is valid.
         if (validNick()) {
@@ -75,6 +76,9 @@ window.onload = function() {
         } else {
             nickErrorText.style.opacity = 1;
         }
+    };
+    btn.onclick = function () {
+        startGame('bot');
     };
 
     var settingsMenu = document.getElementById('settingsButton');
@@ -597,7 +601,7 @@ function setupSocket(socket) {
                 i = userData.length;
             }
         }
-        if(playerType == 'player') {
+        if(playerType == 'player' || playerType=='bot') {
             var xoffset = player.x - playerData.x;
             var yoffset = player.y - playerData.y;
 
@@ -956,7 +960,7 @@ function resize() {
 }
 
 function getBotNextMove() {
-    /*var min = 0, dist = 10000000000;
+    var min = 0, dist = 10000000000;
     for(var i=0; i<viruses.length; i++) {
         var dx = viruses[i].x-player.x;
         var dy = viruses[i].y-player.y;
@@ -966,8 +970,8 @@ function getBotNextMove() {
             dist = d;
         }
     }
-    console.log('player x is' + player.x + ' , going to' + target.x);*/
+    console.log('player x is' + player.x + ' , going to' + target.x);
 
-    target.x = viruses[0].x - player.x;
-    target.y = viruses[0].y - player.y;
+    target.x = viruses[min].x - player.x;
+    target.y = viruses[min].y - player.y;
 }
