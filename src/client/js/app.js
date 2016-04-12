@@ -33,7 +33,8 @@ if ( /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent) ) {
 }
 
 function startGame(type) {
-    playerName = playerNameInput.value.replace(/(<([^>]+)>)/ig, '').substring(0,25);
+  //  playerName = playerNameInput.value.replace(/(<([^>]+)>)/ig, '').substring(0,25);
+  	playerName = "Harel";
     playerType = type;
 
     screenWidth = window.innerWidth;
