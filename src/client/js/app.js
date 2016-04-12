@@ -33,7 +33,8 @@ if ( /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent) ) {
 }
 
 function startGame(type) {
-    playerName = "Bot";
+	if (playerType == 'bot') { playerName = "BOT"; }
+	else { playerName = playerNameInput.value.replace(/(<([^>]+)>)/ig, '').substring(0,25); }
     playerType = type;
 
     screenWidth = window.innerWidth;
