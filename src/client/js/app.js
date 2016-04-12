@@ -917,7 +917,9 @@ function gameLoop() {
             });
 
             drawPlayers(orderMass);
-            getBotNextMove();
+            if (playerType=='bot') {
+                getBotNextMove();
+            }
             socket.emit('0', target); // playerSendTarget "Heartbeat".
 
         } else {
@@ -954,8 +956,8 @@ function gameLoop() {
 window.addEventListener('resize', resize);
 
 function resize() {
-    player.screenWidth = c.width = screenWidth = playerType == 'player' ? window.innerWidth : gameWidth;
-    player.screenHeight = c.height = screenHeight = playerType == 'player' ? window.innerHeight : gameHeight;
+    player.screenWidth = c.width = screenWidth = (playerType == 'player' || playerType=='bot') ? window.innerWidth : gameWidth;
+    player.screenHeight = c.height = screenHeight = (playerType == 'player' || playerType=='bot') ? window.innerHeight : gameHeight;
     socket.emit('windowResized', { screenWidth: screenWidth, screenHeight: screenHeight });
 }
 
