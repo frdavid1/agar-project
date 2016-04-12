@@ -969,7 +969,7 @@ function resize() {
 
 function getBotNextMove() {
     var min = 0, dist = 10000000000;
-    for(var i=0; i<50; i++) {
+    for(var i=0; i<20; i++) {
         var dx = food[i].x-player.x;
         var dy = food[i].y-player.y;
         var d = Math.sqrt(dx*dx + dy*dy);
