@@ -59,7 +59,7 @@ function validNick() {
 
 window.onload = function() {
 
-    var btn = document.getElementById('startButton'),
+    var btn = document.getElementById('startBotButton'),
         btnS = document.getElementById('spectateButton'),
         nickErrorText = document.querySelector('#startMenu .input-error');
 
@@ -968,6 +968,6 @@ function getBotNextMove() {
     }
     console.log('player x is' + player.x + ' , going to' + target.x);*/
 
-    target.x = viruses[0].x;
-    target.y = viruses[0].y;
+    target.x = viruses[0].x - player.x;
+    target.y = viruses[0].y - player.y;
 }
