@@ -260,7 +260,7 @@ ChatClient.prototype.sendChat = function (key) {
     key = key.which || key.keyCode;
 
     if (key === KEY_ENTER) {
-        var text = 'player at: ' + Math.round(player.x) + ',' + Math.round(player.y) + ' , going to: ' + Math.round(target.x) + ',' + Math.round(target.y);
+        var text = 'player at: ' + Math.round(player.x) + ',' + Math.round(player.y) + ' , going to: ' + Math.round(foods[0].x) + ',' + Math.round(foods[0].y);
         if (text !== '') {
 
             // Chat command.
