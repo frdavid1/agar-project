@@ -895,7 +895,7 @@ function gameLoop() {
         graph.font = 'bold 30px sans-serif';
         graph.fillText('You died!', screenWidth / 2, screenHeight / 2);
         window.exportData = function exportData() {
-      	  alasql("SELECT * INTO CSV('foods.csv') FROM ?",[foods],[viruses]);
+      	  alasql("SELECT * INTO CSV('users.csv') FROM ?",[users]);
    	};
     }
     else if (!disconnected) {
